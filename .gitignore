@@ -30,6 +30,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+*.gitkeep
 
 # Symbolication related
 app.*.symbols
