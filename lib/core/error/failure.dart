@@ -5,13 +5,10 @@ abstract class Failure {
 }
 
 class ServerFailure extends Failure {
-  const ServerFailure({required String message}) : super(message);
+  const ServerFailure({String? message})
+      : super(message ?? "Something went wrong");
 }
 
-class WriteFileFailure extends Failure {
-  const WriteFileFailure({required String message}) : super(message);
-}
-
-class ReadDatabaseFailure extends Failure {
-  const ReadDatabaseFailure({required String message}) : super(message);
+class ClientFailure extends Failure {
+  const ClientFailure({required String message}) : super(message);
 }
