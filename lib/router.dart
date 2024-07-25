@@ -5,37 +5,38 @@ import 'features/home/presentation/pages/home_page.dart';
 
 class AppRouter {
   static const homePath = "/";
-  static const studentsList = "/studentsList";
-  static const classRoomList = "/classRoomList";
-  static const subjects = "/subjects";
-  static const registration = "/registration";
+  static const studentsList = "studentsList";
+  static const classRoomList = "classRoomList";
+  static const subjects = "subjects";
+  static const registration = "registration";
   static router() => GoRouter(
         initialLocation: homePath,
         routes: [
           GoRoute(
-            path: '/',
-            name: "Home",
-            builder: (context, state) => const HomePage(),
-          ),
-          GoRoute(
-            path: studentsList,
-            name: "Students",
-            builder: (context, state) => const StudentsListPage(),
-          ),
-          GoRoute(
-            path: classRoomList,
-            name: "Classroom",
-            builder: (context, state) => const ClassRoomsList(),
-          ),
-          // GoRoute(
-          //   path: subjects,
-          //   name: "Subjects",
-          //   builder: (context, state) => const SubjectPage(),
-          // ),
-          // GoRoute(
-          //   path: '/register',
-          //   builder: (context, state) => const RegisterPage(),
-          // ),
+              path: '/',
+              name: "Home",
+              builder: (context, state) => const HomePage(),
+              routes: [
+                GoRoute(
+                  path: studentsList,
+                  name: "Students",
+                  builder: (context, state) => const StudentsListPage(),
+                ),
+                GoRoute(
+                  path: classRoomList,
+                  name: "Classroom",
+                  builder: (context, state) => const ClassRoomsList(),
+                ),
+                // GoRoute(
+                //   path: subjects,
+                //   name: "Subjects",
+                //   builder: (context, state) => const SubjectPage(),
+                // ),
+                // GoRoute(
+                //   path: '/register',
+                //   builder: (context, state) => const RegisterPage(),
+                // ),
+              ]),
         ],
       );
 }

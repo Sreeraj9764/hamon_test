@@ -27,6 +27,16 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+
+  fonts:
+    - family: SF-Pro
+      fonts:
+        - asset: assets/SF-Pro-Dispaly-Bold.otf
+        - asset: assets/SF-Pro-Dispaly-Regular.otf
+        - asset: assets/SF-Pro-Text-Regular.otf
 
   
   
