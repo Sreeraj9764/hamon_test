@@ -5,6 +5,8 @@ sealed class StudentsState {}
 
 final class StudentsBlocInitial extends StudentsState {}
 
+final class StudentsBlocLoading extends StudentsState {}
+
 final class StudentsBlocError extends StudentsState {
   final String error;
 
