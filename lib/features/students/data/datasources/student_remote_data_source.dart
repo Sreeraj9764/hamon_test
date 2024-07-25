@@ -8,9 +8,11 @@ abstract interface class StudentRemoteDataSource {
 }
 
 class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
-  final DioClient client;
+  final Dio client = Dio(BaseOptions(
+      baseUrl: AppSecrets.baseUrl,
+      queryParameters: {"api_key": AppSecrets.apiKey}));
 
-  StudentRemoteDataSourceImpl({required this.client});
+  StudentRemoteDataSourceImpl();
   @override
   Future<StudentModel> fetchStudent({required int id}) async {
     try {
@@ -27,9 +29,10 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
   Future<List<StudentModel>> getStudents() async {
     try {
       final response = await client.get(AppSecrets.students);
-      List<Map<String, dynamic>> studentList = response.data["students"];
+      List studentList = response.data["students"];
       return studentList.map((e) => StudentModel.fromJson(e)).toList();
-    } on DioException {
+    } on DioException catch (e) {
+      print(e.message);
       rethrow;
     } catch (e) {
       throw ServerException(e.toString());

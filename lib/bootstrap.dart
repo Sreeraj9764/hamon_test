@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/app_core.dart';
+import 'features/students/presentation/blocs/students_bloc.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -31,5 +32,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependencies();
 
-  runApp(await builder());
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider(
+      create: (_) => sl<StudentsBloc>(),
+    ),
+  ], child: await builder()));
 }
