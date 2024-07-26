@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hamon_test/features/classroom/presentation/blocs/classroom_bloc.dart';
+import 'package:hamon_test/features/registration/presentation/blocs/register_bloc.dart';
 import 'package:hamon_test/features/subjects/presentation/blocs/subject_bloc.dart';
 
 import 'core/app_core.dart';
@@ -43,6 +44,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     ),
     BlocProvider(
       create: (_) => sl<SubjectBloc>(),
+    ),
+    BlocProvider(
+      create: (_) => sl<RegistrationBloc>(),
     ),
   ], child: await builder()));
 }

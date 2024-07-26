@@ -14,13 +14,13 @@ final class SubjectBlocError extends SubjectState {
 }
 
 final class GetSubjectBlocSuccess extends SubjectState {
-  final List<Subject> classrooms;
+  final List<Subject> subjects;
 
-  GetSubjectBlocSuccess({required this.classrooms});
+  GetSubjectBlocSuccess({required this.subjects});
 }
 
 final class FetchSubjectBlocSuccess extends SubjectState {
-  final Subject classroom;
+  final Subject subject;
 
-  FetchSubjectBlocSuccess({required this.classroom});
+  FetchSubjectBlocSuccess({required this.subject});
 }

@@ -7,6 +7,7 @@ Future<void> initDependencies() async {
   _initStudent();
   _initClassroom();
   _initSubjects();
+  _initRegistration();
 }
 
 void _globalDependdancies() {
@@ -87,4 +88,26 @@ void _initSubjects() {
   //Bloc
   sl.registerLazySingleton(
       () => SubjectBloc(fetchSubject: sl(), getSubject: sl()));
+}
+
+void _initRegistration() {
+  //Datasoure
+  sl.registerFactory<RegistrationRemoteDataSource>(
+    () => RegistrationRemoteDataSourceImpl(client: DioClient(sl())),
+  );
+  //Repository
+  sl.registerFactory<RegistrationRepository>(
+    () => RegistrationRepositoryImpl(
+        registerRemoteDataSource: sl(), connectionChecker: sl()),
+  );
+  //Usecases
+  sl
+    ..registerFactory(() => GetRegistration(sl()))
+    ..registerFactory(
+      () => FetchRegistration(sl()),
+    );
+
+  //Bloc
+  sl.registerLazySingleton(
+      () => RegistrationBloc(fetchRegistration: sl(), getRegistration: sl()));
 }

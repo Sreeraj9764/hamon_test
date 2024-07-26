@@ -7,6 +7,12 @@ import 'package:hamon_test/features/classroom/domain/repositories/classroom_repo
 import 'package:hamon_test/features/classroom/domain/usecases/fetch_classroom.dart';
 import 'package:hamon_test/features/classroom/domain/usecases/get_classroom.dart';
 import 'package:hamon_test/features/classroom/presentation/blocs/classroom_bloc.dart';
+import 'package:hamon_test/features/registration/data/datasources/register_remote_data_source.dart';
+import 'package:hamon_test/features/registration/data/repositories/register_repository_impl.dart';
+import 'package:hamon_test/features/registration/domain/repositories/register_repository.dart';
+import 'package:hamon_test/features/registration/domain/usecases/fetch_registration.dart';
+import 'package:hamon_test/features/registration/domain/usecases/get_restration.dart';
+import 'package:hamon_test/features/registration/presentation/blocs/register_bloc.dart';
 import 'package:hamon_test/features/students/data/datasources/student_remote_data_source.dart';
 import 'package:hamon_test/features/students/data/repositories/student_repository_impl.dart';
 import 'package:hamon_test/features/students/domain/repositories/student_repository.dart';

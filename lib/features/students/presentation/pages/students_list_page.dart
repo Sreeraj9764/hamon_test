@@ -31,7 +31,8 @@ class _StudentsListPageState extends State<StudentsListPage> {
           );
         }
         if (state is GetStudentsBlocSuccess) {
-          return ListView.builder(
+          return state.students.isNotEmpty
+              ? ListView.builder(
             itemCount: state.students.length,
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             itemBuilder: (context, index) =>
@@ -43,9 +44,10 @@ class _StudentsListPageState extends State<StudentsListPage> {
                 trailing: Text("Age: ${state.students[index].age}"),
               ),
             ),
-          );
+                )
+              : const Center(child: Text("No Records"));
         }
-        return const SizedBox();
+        return const Text("Retry");
       },
     ));
   }

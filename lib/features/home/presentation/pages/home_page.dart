@@ -28,11 +28,11 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: GridView.count(
-          crossAxisCount: 2,
+          crossAxisCount: listMode ? 1 : 2,
           crossAxisSpacing: 10,
           shrinkWrap: true,
           mainAxisSpacing: 20,
-          childAspectRatio: 4 / 5,
+          childAspectRatio: listMode ? 16 / 5 : 4 / 5,
           padding: const EdgeInsets.symmetric(horizontal: 16),
           physics: const NeverScrollableScrollPhysics(),
           children: [
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
             HomeContainer(
               imgPath: "assets/images/registration_icon.png",
               title: "Register",
-              onPressed: () {},
+              onPressed: () => context.go("/${AppRouter.registration}"),
               color: AppPallete.registrationhomeCard,
             ),
           ],
@@ -75,9 +75,12 @@ class ActionButton extends StatelessWidget {
   final bool listMode;
   @override
   Widget build(BuildContext context) {
-    return Icon(
-      listMode ? Icons.grid_view_outlined : Icons.menu,
-      size: 32,
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: Icon(
+        listMode ? Icons.grid_view_outlined : Icons.menu,
+        size: 32,
+      ),
     );
   }
 }

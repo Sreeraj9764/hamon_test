@@ -28,7 +28,7 @@ class SubjectBloc extends Bloc<SubjectEvent, SubjectState> {
 
     res.fold(
       (l) => emit(SubjectBlocError(error: l.message)),
-      (r) => emit(GetSubjectBlocSuccess(classrooms: r)),
+      (r) => emit(GetSubjectBlocSuccess(subjects: r)),
     );
   }
 
@@ -40,7 +40,7 @@ class SubjectBloc extends Bloc<SubjectEvent, SubjectState> {
 
     res.fold(
       (l) => emit(SubjectBlocError(error: l.message)),
-      (r) => emit(FetchSubjectBlocSuccess(classroom: r)),
+      (r) => emit(FetchSubjectBlocSuccess(subject: r)),
     );
   }
 }

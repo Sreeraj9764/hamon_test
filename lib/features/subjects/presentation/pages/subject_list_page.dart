@@ -31,20 +31,24 @@ class _SubjectListPageState extends State<SubjectListPage> {
           );
         }
         if (state is GetSubjectBlocSuccess) {
-          return ListView.builder(
-            itemCount: state.classrooms.length,
+
+          return state.subjects.isNotEmpty
+              ? ListView.builder(
+                  itemCount: state.subjects.length,
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.only(top: 10),
               child: HmCard(
-                title: state.classrooms[index].name,
-                subtitle: state.classrooms[index].teacher,
-                trailing: Text("Credits: ${state.classrooms[index].credits}"),
+                      title: state.subjects[index].name,
+                      subtitle: state.subjects[index].teacher,
+                      trailing:
+                          Text("Credits: ${state.subjects[index].credits}"),
               ),
             ),
-          );
+                )
+              : const Center(child: Text("No Records"));
         }
-        return const SizedBox();
+        return const Text("Retry");
       },
     ));
   }

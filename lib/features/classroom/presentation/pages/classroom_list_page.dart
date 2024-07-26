@@ -31,7 +31,8 @@ class _ClassRoomListPageState extends State<ClassRoomListPage> {
           );
         }
         if (state is GetClassRoomBlocSuccess) {
-          return ListView.builder(
+          return state.classrooms.isNotEmpty
+              ? ListView.builder(
             itemCount: state.classrooms.length,
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             itemBuilder: (context, index) => Padding(
@@ -42,9 +43,10 @@ class _ClassRoomListPageState extends State<ClassRoomListPage> {
                 trailing: Text("Size: ${state.classrooms[index].size}"),
               ),
             ),
-          );
+                )
+              : const Center(child: Text("No Records"));
         }
-        return const SizedBox();
+        return const Text("Retry");
       },
     ));
   }
