@@ -5,19 +5,20 @@ import 'package:hamon_test/core/widgets/hamon_appbar.dart';
 class HamonScaffold extends StatelessWidget {
   const HamonScaffold(
       {super.key,
-      this.appBar,
       required this.body,
       this.bottom,
-      this.backgrondColor});
-  final HamonAppbar? appBar;
+      this.backgrondColor,
+      this.appbar});
+
   final Widget body;
   final Widget? bottom;
   final Color? backgrondColor;
+  final HamonAppbar? appbar;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgrondColor ?? AppPallete.backgroundColor,
-      appBar: appBar,
+      appBar: appbar ?? const HamonAppbar(),
       body: body,
       bottomNavigationBar: bottom,
     );

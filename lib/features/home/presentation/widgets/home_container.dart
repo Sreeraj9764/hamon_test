@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hamon_test/core/extentions/context_extentions.dart';
 
 class HomeContainer extends StatelessWidget {
   const HomeContainer({
     super.key,
-    required this.iconData,
+    required this.imgPath,
     required this.title,
     required this.onPressed,
     required this.color,
   });
 
-  final IconData iconData;
+  final String imgPath;
   final String title;
   final Function onPressed;
   final Color color;
@@ -27,11 +28,14 @@ class HomeContainer extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(iconData),
+            Image.asset(imgPath),
             const SizedBox(
               height: 10,
             ),
-            Text(title)
+            Text(
+              title,
+              style: context.textTheme.titleLarge,
+            )
           ],
         ),
       ),
