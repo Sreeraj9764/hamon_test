@@ -19,8 +19,7 @@ class HomeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => onPressed(),
-      child: AnimatedContainer(
-        duration: const Duration(seconds: 3),
+      child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10), color: color),

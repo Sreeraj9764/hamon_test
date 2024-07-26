@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:hamon_test/features/classroom/presentation/pages/classroom_details_page.dart';
 import 'package:hamon_test/features/classroom/presentation/pages/classroom_list_page.dart';
 import 'package:hamon_test/features/registration/presentation/pages/subject_list_page.dart';
 import 'package:hamon_test/features/students/presentation/pages/students_list_page.dart';
@@ -9,6 +10,7 @@ class AppRouter {
   static const homePath = "/";
   static const studentsList = "studentsList";
   static const classRoomList = "classRoomList";
+  static const classRoomDetail = "classRoomDetail";
   static const subjects = "subjects";
   static const registration = "registration";
   static router() => GoRouter(
@@ -28,6 +30,15 @@ class AppRouter {
                   path: classRoomList,
                   name: "Classroom",
                   builder: (context, state) => const ClassRoomListPage(),
+                    routes: [
+                      GoRoute(
+                        path: classRoomDetail,
+                        name: "classRoomDetail",
+                        builder: (context, state) => ClassroomDetailsPage(
+                          classRoomId: state.extra as int,
+                        ),
+                      ),
+                    ]
                 ),
                 GoRoute(
                   path: subjects,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hamon_test/core/app_core.dart';
-import 'package:hamon_test/core/widgets/hm_card.dart';
 import 'package:hamon_test/features/classroom/presentation/blocs/classroom_bloc.dart';
 
 class ClassRoomListPage extends StatefulWidget {
@@ -33,17 +32,21 @@ class _ClassRoomListPageState extends State<ClassRoomListPage> {
         if (state is GetClassRoomBlocSuccess) {
           return state.classrooms.isNotEmpty
               ? ListView.builder(
-            itemCount: state.classrooms.length,
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: HmCard(
-                title: state.classrooms[index].name,
-                subtitle: state.classrooms[index].layout,
+                  itemCount: state.classrooms.length,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  itemBuilder: (context, index) {
+                    final classRoomState = state.classrooms[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: HmCard(
+                        title: classRoomState.name,
+                        subtitle: classRoomState.layout,
                 trailing: Text("Size: ${state.classrooms[index].size}"),
               ),
-            ),
-                )
+                  
+                    );
+                  })
               : const Center(child: Text("No Records"));
         }
         return const Text("Retry");

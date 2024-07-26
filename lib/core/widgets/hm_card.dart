@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hamon_test/core/extentions/context_extentions.dart';
 import 'package:hamon_test/core/theme/app_pallete.dart';
 
 class HmCard extends StatelessWidget {
@@ -6,12 +7,15 @@ class HmCard extends StatelessWidget {
       {super.key,
       required this.title,
       required this.subtitle,
-      required this.trailing});
+      required this.trailing,
+      this.onTap});
   final String title, subtitle;
   final Widget trailing;
+  final Function? onTap;
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () => onTap?.call(),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16),
       tileColor: AppPallete.cardColor,
       shape: RoundedRectangleBorder(
@@ -21,11 +25,14 @@ class HmCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(title),
-          const SizedBox(
-            height: 5,
+          Text(
+            title,
+            style: context.textTheme.titleLarge?.copyWith(fontSize: 14),
           ),
-          Text(subtitle)
+          Text(
+            subtitle,
+            style: context.textTheme.titleMedium?.copyWith(fontSize: 12),
+          )
         ],
       ),
       trailing: trailing,
