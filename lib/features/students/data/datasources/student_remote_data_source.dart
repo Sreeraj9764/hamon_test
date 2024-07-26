@@ -8,11 +8,8 @@ abstract interface class StudentRemoteDataSource {
 }
 
 class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
-  final Dio client = Dio(BaseOptions(
-      baseUrl: AppSecrets.baseUrl,
-      queryParameters: {"api_key": AppSecrets.apiKey}));
-
-  StudentRemoteDataSourceImpl();
+  final DioClient client;
+  StudentRemoteDataSourceImpl({required this.client});
   @override
   Future<StudentModel> fetchStudent({required int id}) async {
     try {

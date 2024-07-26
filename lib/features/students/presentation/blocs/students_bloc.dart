@@ -16,7 +16,7 @@ class StudentsBloc extends Bloc<StudentsEvent, StudentsState> {
       : _fetchStudent = fetchStudent,
         _getStudents = getStudents,
         super(StudentsBlocInitial()) {
-    //on<StudentsEvent>((event, emit) => emit(StudentsBlocLoading()));
+    on<StudentsEvent>((event, emit) => emit(StudentsBlocLoading()));
     on<GetStudentsEvent>(_onGetAllStudents);
     on<FetchStudentEvent>(_onFetchStudent);
   }

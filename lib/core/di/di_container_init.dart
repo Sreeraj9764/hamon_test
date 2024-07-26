@@ -5,14 +5,16 @@ final sl = GetIt.instance;
 Future<void> initDependencies() async {
   _globalDependdancies();
   _initStudent();
+  _initClassroom();
+  _initSubjects();
 }
 
 void _globalDependdancies() {
   sl
     ..registerFactory(() => InternetConnection())
-    // ..registerFactory(
-    //   () => Dio(),
-    // )
+    ..registerFactory(
+      () => Dio(),
+    )
     ..registerFactory(
       () => DioClient(sl()),
     )
@@ -24,7 +26,7 @@ void _globalDependdancies() {
 void _initStudent() {
   //Datasoure
   sl.registerFactory<StudentRemoteDataSource>(
-    () => StudentRemoteDataSourceImpl(),
+    () => StudentRemoteDataSourceImpl(client: DioClient(sl())),
   );
   //Repository
   sl.registerFactory<StudentRepository>(
@@ -41,4 +43,48 @@ void _initStudent() {
   //Bloc
   sl.registerLazySingleton(
       () => StudentsBloc(fetchStudent: sl(), getStudents: sl()));
+}
+
+void _initClassroom() {
+  //Datasoure
+  sl.registerFactory<ClassRoomRemoteDataSource>(
+    () => ClassRoomRemoteDataSourceImpl(client: DioClient(sl())),
+  );
+  //Repository
+  sl.registerFactory<ClassRoomRepository>(
+    () => ClassRoomRepositoryImpl(
+        classroomRemoteDataSource: sl(), connectionChecker: sl()),
+  );
+  //Usecases
+  sl
+    ..registerFactory(() => GetClassRoom(sl()))
+    ..registerFactory(
+      () => FetchClassRoom(sl()),
+    );
+
+  //Bloc
+  sl.registerLazySingleton(
+      () => ClassRoomBloc(fetchClassRoom: sl(), getClassRoom: sl()));
+}
+
+void _initSubjects() {
+  //Datasoure
+  sl.registerFactory<SubjectRemoteDataSource>(
+    () => SubjectRemoteDataSourceImpl(client: DioClient(sl())),
+  );
+  //Repository
+  sl.registerFactory<SubjectRepository>(
+    () => SubjectRepositoryImpl(
+        subjectRemoteDataSource: sl(), connectionChecker: sl()),
+  );
+  //Usecases
+  sl
+    ..registerFactory(() => GetSubject(sl()))
+    ..registerFactory(
+      () => FetchSubject(sl()),
+    );
+
+  //Bloc
+  sl.registerLazySingleton(
+      () => SubjectBloc(fetchSubject: sl(), getSubject: sl()));
 }

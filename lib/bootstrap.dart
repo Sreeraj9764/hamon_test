@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hamon_test/features/classroom/presentation/blocs/classroom_bloc.dart';
+import 'package:hamon_test/features/subjects/presentation/blocs/subject_bloc.dart';
 
 import 'core/app_core.dart';
 import 'features/students/presentation/blocs/students_bloc.dart';
@@ -35,6 +37,12 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
       create: (_) => sl<StudentsBloc>(),
+    ),
+    BlocProvider(
+      create: (_) => sl<ClassRoomBloc>(),
+    ),
+    BlocProvider(
+      create: (_) => sl<SubjectBloc>(),
     ),
   ], child: await builder()));
 }

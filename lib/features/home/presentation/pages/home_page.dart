@@ -45,13 +45,13 @@ class _HomePageState extends State<HomePage> {
             HomeContainer(
               imgPath: "assets/images/subject_icon.png",
               title: "Subjects",
-              onPressed: () {},
+              onPressed: () => context.go("/${AppRouter.subjects}"),
               color: AppPallete.subjecthomeCard,
             ),
             HomeContainer(
               imgPath: "assets/images/classroom_icon.png",
               title: "Class Room",
-              onPressed: () {},
+              onPressed: () => context.go("/${AppRouter.classRoomList}"),
               color: AppPallete.classroomhomeCard,
             ),
             HomeContainer(

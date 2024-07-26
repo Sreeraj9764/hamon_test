@@ -23,18 +23,28 @@ class _StudentsListPageState extends State<StudentsListPage> {
     return HamonScaffold(body: BlocBuilder<StudentsBloc, StudentsState>(
       builder: (context, state) {
         if (state is StudentsBlocLoading || state is StudentsBlocInitial) {
-          return const CircularProgressIndicator();
+          return const HmLoadingIndicator();
         }
-        if (state is StudentsBlocError) return const Text("Error");
+        if (state is StudentsBlocError) {
+          return Center(
+            child: Text(state.error),
+          );
+        }
         if (state is GetStudentsBlocSuccess) {
           return ListView.builder(
             itemCount: state.students.length,
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             itemBuilder: (context, index) =>
-                HmCard(child: Text(state.students[index].name)),
+                Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: HmCard(
+                title: state.students[index].name,
+                subtitle: state.students[index].email,
+                trailing: Text("Age: ${state.students[index].age}"),
+              ),
+            ),
           );
         }
-        ;
         return const SizedBox();
       },
     ));
