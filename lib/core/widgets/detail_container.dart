@@ -3,9 +3,13 @@ import 'package:hamon_test/core/extentions/context_extentions.dart';
 
 class DetailContainer extends StatelessWidget {
   const DetailContainer(
-      {super.key, required this.title, required this.subtitle});
+      {super.key,
+      required this.title,
+      required this.subtitle,
+      required this.subtitle2});
   final String title;
   final String subtitle;
+  final String subtitle2;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -14,7 +18,7 @@ class DetailContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const CircleAvatar(
-            minRadius: 10,
+            minRadius: 30,
             child: Icon(Icons.person),
           ),
           const SizedBox(
@@ -30,6 +34,13 @@ class DetailContainer extends StatelessWidget {
           Text(
             subtitle,
             style: context.textTheme.titleMedium,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            subtitle2,
+            style: context.textTheme.titleSmall,
           )
         ],
       ),

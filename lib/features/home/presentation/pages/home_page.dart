@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
             HomeContainer(
               imgPath: "assets/images/subject_icon.png",
               title: "Subjects",
-              onPressed: () => context.go("/${AppRouter.subjects}"),
+              onPressed: () => context.go("/${AppRouter.subjectList}"),
               color: AppPallete.subjecthomeCard,
             ),
             HomeContainer(

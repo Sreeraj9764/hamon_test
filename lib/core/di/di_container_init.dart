@@ -42,8 +42,8 @@ void _initStudent() {
     );
 
   //Bloc
-  sl.registerLazySingleton(
-      () => StudentsBloc(fetchStudent: sl(), getStudents: sl()));
+  sl.registerLazySingleton(() => StudentsListBloc(getStudents: sl()));
+  sl.registerLazySingleton(() => StudentsDetailBloc(fetchStudent: sl()));
 }
 
 void _initClassroom() {
@@ -65,7 +65,7 @@ void _initClassroom() {
 
   //Bloc
   sl.registerLazySingleton(
-      () => ClassRoomBloc(fetchClassRoom: sl(), getClassRoom: sl()));
+      () => ClassRoomListBloc(fetchClassRoom: sl(), getClassRoom: sl()));
 }
 
 void _initSubjects() {
@@ -86,8 +86,8 @@ void _initSubjects() {
     );
 
   //Bloc
-  sl.registerLazySingleton(
-      () => SubjectBloc(fetchSubject: sl(), getSubject: sl()));
+  sl.registerLazySingleton(() => SubjectListBloc(getSubject: sl()));
+  sl.registerLazySingleton(() => FetchSubjectBloc(fetchSubject: sl()));
 }
 
 void _initRegistration() {

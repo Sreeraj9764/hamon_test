@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hamon_test/core/app_core.dart';
-import 'package:hamon_test/features/classroom/presentation/blocs/classroom_bloc.dart';
+import 'package:hamon_test/features/classroom/presentation/blocs/class_room_list/classroom_bloc.dart';
 
 class ClassRoomListPage extends StatefulWidget {
   const ClassRoomListPage({super.key});
@@ -13,23 +13,25 @@ class ClassRoomListPage extends StatefulWidget {
 class _ClassRoomListPageState extends State<ClassRoomListPage> {
   @override
   void initState() {
-    context.read<ClassRoomBloc>().add(GetClassRoomEvent());
+    context.read<ClassRoomListBloc>().add(GetClassRoomListEvent());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return HamonScaffold(body: BlocBuilder<ClassRoomBloc, ClassRoomState>(
+    return HamonScaffold(
+        body: BlocBuilder<ClassRoomListBloc, ClassRoomListState>(
       builder: (context, state) {
-        if (state is ClassRoomBlocLoading || state is ClassRoomBlocInitial) {
+        if (state is ClassRoomListBlocLoading ||
+            state is ClassRoomListBlocInitial) {
           return const HmLoadingIndicator();
         }
-        if (state is ClassRoomBlocError) {
+        if (state is ClassRoomListBlocError) {
           return Center(
             child: Text(state.error),
           );
         }
-        if (state is GetClassRoomBlocSuccess) {
+        if (state is GetClassRoomListBlocSuccess) {
           return state.classrooms.isNotEmpty
               ? ListView.builder(
                   itemCount: state.classrooms.length,
@@ -42,9 +44,8 @@ class _ClassRoomListPageState extends State<ClassRoomListPage> {
                       child: HmCard(
                         title: classRoomState.name,
                         subtitle: classRoomState.layout,
-                trailing: Text("Size: ${state.classrooms[index].size}"),
-              ),
-                  
+                        trailing: Text("Size: ${state.classrooms[index].size}"),
+                      ),
                     );
                   })
               : const Center(child: Text("No Records"));
