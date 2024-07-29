@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hamon_test/core/app_core.dart';
+import 'package:hamon_test/features/classroom/presentation/blocs/class_room_details/class_room_detail_bloc.dart';
 import 'package:hamon_test/features/classroom/presentation/blocs/class_room_list/classroom_bloc.dart';
+import 'package:hamon_test/router.dart';
 
 class ClassRoomListPage extends StatefulWidget {
   const ClassRoomListPage({super.key});
@@ -31,7 +34,7 @@ class _ClassRoomListPageState extends State<ClassRoomListPage> {
             child: Text(state.error),
           );
         }
-        if (state is GetClassRoomListBlocSuccess) {
+        if (state is ClassRoomListBlocSuccess) {
           return state.classrooms.isNotEmpty
               ? ListView.builder(
                   itemCount: state.classrooms.length,
@@ -44,7 +47,14 @@ class _ClassRoomListPageState extends State<ClassRoomListPage> {
                       child: HmCard(
                         title: classRoomState.name,
                         subtitle: classRoomState.layout,
-                        trailing: Text("Size: ${state.classrooms[index].size}"),
+                        trailing: Text("Size: ${classRoomState.size}"),
+                        onTap: () {
+                          context.read<ClassRoomDetailBloc>().add(
+                              FetchClassRoomLDetailEvent(
+                                  id: classRoomState.id));
+                          context.go(
+                              "/${AppRouter.classRoomList}/${AppRouter.classRoomDetail}");
+                        },
                       ),
                     );
                   })

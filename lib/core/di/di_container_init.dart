@@ -64,8 +64,8 @@ void _initClassroom() {
     );
 
   //Bloc
-  sl.registerLazySingleton(
-      () => ClassRoomListBloc(fetchClassRoom: sl(), getClassRoom: sl()));
+  sl.registerLazySingleton(() => ClassRoomListBloc(getClassRoom: sl()));
+  sl.registerLazySingleton(() => ClassRoomDetailBloc(fetchClassroom: sl()));
 }
 
 void _initSubjects() {

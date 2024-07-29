@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hamon_test/features/classroom/presentation/blocs/class_room_details/class_room_detail_bloc.dart';
 import 'package:hamon_test/features/classroom/presentation/blocs/class_room_list/classroom_bloc.dart';
 import 'package:hamon_test/features/registration/presentation/blocs/register_bloc.dart';
 import 'package:hamon_test/features/students/presentation/blocs/student_details/student_details_bloc.dart';
@@ -46,6 +47,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     ),
     BlocProvider(
       create: (_) => sl<ClassRoomListBloc>(),
+    ),
+    BlocProvider(
+      create: (_) => sl<ClassRoomDetailBloc>(),
     ),
     BlocProvider(
       create: (_) => sl<SubjectListBloc>(),

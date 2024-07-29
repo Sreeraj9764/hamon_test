@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hamon_test/core/app_core.dart';
-import 'package:hamon_test/features/classroom/presentation/blocs/class_room_list/classroom_bloc.dart';
+import 'package:hamon_test/features/classroom/presentation/blocs/class_room_details/class_room_detail_bloc.dart';
 
 class ClassroomDetailsPage extends StatelessWidget {
-  const ClassroomDetailsPage({super.key, required this.classRoomId});
-  final int classRoomId;
+  const ClassroomDetailsPage({super.key});
   @override
   Widget build(BuildContext context) {
-    context
-        .read<ClassRoomListBloc>()
-        .add(FetchClassRoomListEvent(id: classRoomId));
     return HamonScaffold(
-        body: BlocBuilder<ClassRoomListBloc, ClassRoomListState>(
+        body: BlocBuilder<ClassRoomDetailBloc, ClassRoomDetailState>(
       builder: (context, state) {
-        if (state is ClassRoomListBlocLoading ||
-            state is ClassRoomListBlocInitial) {
+        if (state is ClassRoomDetailBlocLoading ||
+            state is ClassRoomDetailInitial) {
           return const HmLoadingIndicator();
         }
-        if (state is ClassRoomListBlocError) {
+        if (state is ClassRoomDetailBlocError) {
           return Center(
             child: Text(state.error),
           );
         }
-        if (state is FetchClassRoomListBlocSuccess) {
+        if (state is ClassRoomDetailBlocSuccess) {
           return DetailContainer(
             title: state.classroom.name,
             subtitle: state.classroom.size.toString(),

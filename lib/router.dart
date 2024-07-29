@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:hamon_test/features/classroom/presentation/pages/classroom_details_page.dart';
 import 'package:hamon_test/features/classroom/presentation/pages/classroom_list_page.dart';
-import 'package:hamon_test/features/registration/presentation/pages/subject_list_page.dart';
+import 'package:hamon_test/features/registration/presentation/pages/registration_list_page.dart';
 import 'package:hamon_test/features/students/presentation/pages/student_detail_page.dart';
 import 'package:hamon_test/features/students/presentation/pages/students_list_page.dart';
 import 'package:hamon_test/features/subjects/presentation/pages/subject_details_page.dart';
@@ -44,9 +44,7 @@ class AppRouter {
                       GoRoute(
                         path: classRoomDetail,
                         name: "classRoomDetail",
-                        builder: (context, state) => ClassroomDetailsPage(
-                          classRoomId: state.extra as int,
-                        ),
+                        builder: (context, state) => ClassroomDetailsPage(),
                       ),
                     ]),
                 GoRoute(

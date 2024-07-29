@@ -9,17 +9,14 @@ part 'register_event.dart';
 part 'register_state.dart';
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
-  final FetchRegistration _fetchRegistration;
   final GetRegistration _getRegistration;
   RegistrationBloc(
       {required FetchRegistration fetchRegistration,
       required GetRegistration getRegistration})
-      : _fetchRegistration = fetchRegistration,
-        _getRegistration = getRegistration,
+      : _getRegistration = getRegistration,
         super(RegistrationBlocInitial()) {
     on<RegistrationEvent>((event, emit) => emit(RegistrationBlocLoading()));
     on<GetRegistrationEvent>(_onGetAllRegistration);
-    on<FetchRegistrationEvent>(_onFetchRegistration);
   }
   void _onGetAllRegistration(
     GetRegistrationEvent event,
@@ -30,18 +27,6 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     res.fold(
       (l) => emit(RegistrationBlocError(error: l.message)),
       (r) => emit(GetRegistrationBlocSuccess(registrations: r)),
-    );
-  }
-
-  void _onFetchRegistration(
-    FetchRegistrationEvent event,
-    Emitter<RegistrationState> emit,
-  ) async {
-    final res = await _fetchRegistration(event.id);
-
-    res.fold(
-      (l) => emit(RegistrationBlocError(error: l.message)),
-      (r) => emit(FetchRegistrationBlocSuccess(registration: r)),
     );
   }
 }

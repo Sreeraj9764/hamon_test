@@ -5,6 +5,8 @@ import 'package:hamon_test/features/registration/data/models/register_model.dart
 abstract interface class RegistrationRemoteDataSource {
   Future<List<RegistrationModel>> getRegistration();
   Future<RegistrationModel> fetchRegistration({required int id});
+  Future<RegistrationModel> register(
+      {required RegistrationModel registrationModel});
 }
 
 class RegistrationRemoteDataSourceImpl implements RegistrationRemoteDataSource {
@@ -30,6 +32,20 @@ class RegistrationRemoteDataSourceImpl implements RegistrationRemoteDataSource {
       return registrationList
           .map((e) => RegistrationModel.fromJson(e))
           .toList();
+    } on DioException {
+      rethrow;
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<RegistrationModel> register(
+      {required RegistrationModel registrationModel}) async {
+    try {
+      final response = await client.post(AppSecrets.registration,
+          data: registrationModel.toJson());
+      return RegistrationModel.fromJson(response.data);
     } on DioException {
       rethrow;
     } catch (e) {
