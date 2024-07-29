@@ -44,7 +44,8 @@ class AppRouter {
                       GoRoute(
                         path: classRoomDetail,
                         name: "classRoomDetail",
-                        builder: (context, state) => ClassroomDetailsPage(),
+                        builder: (context, state) =>
+                            const ClassroomDetailsPage(),
                       ),
                     ]),
                 GoRoute(
